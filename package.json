@@ -1,0 +1,28 @@
+{
+  "name": "food-rescue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build --workspace=apps/web",
+    "start": "node apps/server/src/index.js",
+    "start:https": "cross-env HTTPS=true node apps/server/src/index.js",
+    "seed": "node apps/server/src/db/seed.js",
+    "demo": "node scripts/simulate.mjs",
+    "test": "node --test packages/engine/test/engine.test.js apps/server/test/server.test.js",
+    "test:engine": "node --test packages/engine/test/engine.test.js",
+    "test:server": "node --test apps/server/test/server.test.js",
+    "check-bundle": "node scripts/check-bundle.mjs",
+    "e2e": "node scripts/e2e-runner.mjs",
+    "verify": "npm run test && npm run build && npm run check-bundle && npm run e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.0",
+    "cross-env": "7.0.3"
+  }
+}
